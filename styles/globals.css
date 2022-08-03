@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components{
+    .input-text-group{
+        @apply flex flex-col space-y-1 ;
+    }
+    .input-text{
+        @apply py-2 rounded-md px-2 w-96 bg-white outline-none border border-white focus:border-zinc-900;
+    }
+    .submit{
+        @apply py-2 bg-zinc-900 text-white rounded-md hover:bg-transparent hover:text-black
+        hover:border hover:border-zinc-900 ;
+    }
+}
