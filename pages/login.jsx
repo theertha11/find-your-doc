@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Header from '../../components/Header';
-import { supabase } from '../../supabase';
+import Header from '../components/Header';
+import { supabase } from '../supabase';
 
 
 
@@ -21,14 +21,14 @@ export default function Login() {
       email: data.email,
       password: data.password,
     })
-    setloading(false) 
-    !error && router.push('/user/dashboard')
+    setloading(false);
+    (user?.user_metadata?.role == 'doctor' && !error)  ? router.push('/doctor') : router.push('/user')
+    
   }
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen">
-      <Header/>  
-          <div className="shadow-md w-90 rounded-2xl px-4"
+          <div className="shadow-md w-90 rounded-2xl px-4 py-2"
             style={{backgroundImage : `url(https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg?w=2000)`}}>
             <h1 className="pt-4 text-black text-center"  id="login">Login</h1>
 
@@ -44,18 +44,28 @@ export default function Login() {
                 <input type="password"  className="input-text" placeholder="Password"
                 {...register('password', {required: "This field is required"})}/>
               </div>
-              <div className='flex items-center justify-center'>
-                <button type="submit" className="submit w-60">
+              <div className='flex flex-col items-center justify-center space-y-3'>
+                <Link href='/password'>
+                      <p className='cursor-pointer underline text-black'>Forgot Password</p>
+                </Link>
+                <button type="submit" className="submit w-full">
                   {loading ? "Loading..." : "Login"}
                 </button>
               </div>
+
+              {errors?.password && <p className='text-red-600'> {errors?.password.message} </p>}
               
-              <div className='flex flex-col items-center justify-center'>
-                <Link href='/user/password'>
-                      <p className='cursor-pointer underline text-black'>Forgot Password</p>
+              <div className='flex flex-col items-center justify-center space-y-2'>
+                <p>Don't have an account yet?</p>
+                <Link href='/user/register'>
+                  <button type="submit" className="submit w-full">
+                    User Registration
+                  </button>
                 </Link>
-                <Link href='/doctor/login'>
-                      <p className='cursor-pointer underline'>Doctor Login</p>
+                <Link href='/doctor/register'>
+                  <button type="submit" className="submit w-full">
+                    Doctor Registration
+                  </button>
                 </Link>
               </div>
             </form>

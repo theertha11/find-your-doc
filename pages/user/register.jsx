@@ -28,7 +28,8 @@ export default function Register() {
                 mobile: data.mobile,
                 street: data.street,
                 district: data.district,
-                pin: data.pin
+                pin: data.pin,
+                role: 'user'
             }
         })
         data.id = user?.id
@@ -39,7 +40,7 @@ export default function Register() {
             .insert([
               data
             ])
-            !res.error && router.push('/user/dashboard')
+            !res.error && router.push('/user')
         }
         setloading(false)
         
@@ -51,7 +52,7 @@ export default function Register() {
         <Header/>
         <div className="shadow-md rounded-2xl px-4 mt-24 space-y-4" 
             style={{backgroundImage : `url(https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg?w=2000)`}}>
-            <h1 className="text-black pt-4" style={{textAlign: 'center'}}>Sign Up</h1>
+            <h1 className="text-black pt-4 text-xl text-center">User Registartion</h1>
 
 
             <form className='flex flex-col justify-center items-center space-y-4 pb-4'
@@ -83,29 +84,13 @@ export default function Register() {
                     </div>
 
                     <div className="input-text-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="text" className="input-text" placeholder="abcd@gmail.com"
-                        {...register("email", {required: "This field is required"})}/>
-                        {errors?.email && <p className='text-red-600'> {errors?.email.message} </p>}
-                    </div>
-
-                    <div className="input-text-group">
                         <label htmlFor="mobile">Phone Number</label>
                         <input type="text" className="input-text" placeholder="Mobile number"
                         {...register("mobile", {required: "This field is required"})}/>
                         {errors?.mobile && <p className='text-red-600'> {errors?.mobile.message} </p>}
                     </div>
 
-                    <div className="input-text-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" className="input-text" placeholder="Password"
-                        {...register("password", {
-                            required: "This field is required",
-                        })}/>
-                        
-                        {errors?.password && <p className='text-red-600'>{errors.password.message}</p>}
-                    </div>
-
+                    
                     <div className="input-text-group">
                         <label htmlFor="street">Street</label>
                         <input type="text" className="input-text"  placeholder="Street"
@@ -135,6 +120,26 @@ export default function Register() {
                         {...register("pin", {required: "This field is required"})}/>
                     </div>
                 </div>
+
+                <div className='grid grid-cols-2 gap-x-6 gap-y-4'>
+                    <div className="input-text-group">
+                        <label htmlFor="email">Email</label>
+                        <input type="text" className="input-text" placeholder="abcd@gmail.com"
+                        {...register("email", {required: "This field is required"})}/>
+                        {errors?.email && <p className='text-red-600'> {errors?.email.message} </p>}
+                    </div>
+
+                    <div className="input-text-group">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" className="input-text" placeholder="Password"
+                        {...register("password", {
+                            required: "This field is required",
+                        })}/>
+                        
+                        {errors?.password && <p className='text-red-600'>{errors.password.message}</p>}
+                    </div>
+                </div>
+
                 <div className='flex justify-center items-center'>
                     <button type="submit" className="submit w-60" >
                         {loading ? 'Loading...' : 'Register'}

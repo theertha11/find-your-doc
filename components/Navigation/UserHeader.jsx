@@ -12,13 +12,13 @@ export default function UserHeader() {
     }
 
     return (
-        <header className="fixed top-0 z-50 w-screen h-18 flex justify-between items-center px-6 bg-zinc-900" >
+        <header className="fixed top-0 z-50 w-screen h-18 flex justify-between items-center px-6 bg-zinc-900 " >
             <div className="text-white  pt-2">
                 <h2>FIND YOUR DOC</h2>
             </div>
             <div className="flex space-x-10 text-white text-xl items-center"> 
                 <Link href='/user/dashboard'>
-                    <p className='cursor-pointer'>Home</p>
+                    <p className='cursor-pointer'>Dashboard</p>
                 </Link>
                 <Link href='/user/contact'>
                     <p className='cursor-pointer'>Contact us</p>

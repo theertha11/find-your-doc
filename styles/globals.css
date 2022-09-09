@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base{
+    td{
+      @apply text-left  h-16 px-4;
+    }
+    th{
+      @apply  text-left h-16 px-4 ;
+    }
+  }
+  
+
 
 @layer components{
     .input-text-group{
@@ -11,7 +21,7 @@
         @apply py-2 rounded-md px-2 w-96 bg-white outline-none border border-white focus:border-zinc-900;
     }
     .submit{
-        @apply py-2 bg-zinc-900 text-white rounded-md hover:bg-transparent hover:text-black
+        @apply py-2 bg-zinc-900 text-white rounded-md hover:bg-transparent hover:text-black border border-transparent
         hover:border hover:border-zinc-900 ;
     }
 }

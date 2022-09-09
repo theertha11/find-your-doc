@@ -1,8 +1,12 @@
+import Context from '../store/Context'
 import '../styles/globals.css'
-import 'bootstrap/dist/css/bootstrap.css'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return(
+    <Context>
+      <Component {...pageProps} />
+    </Context>
+  )
 }
 
 export default MyApp
