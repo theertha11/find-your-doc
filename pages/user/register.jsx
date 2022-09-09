@@ -1,8 +1,8 @@
-import UserHeader from '../../components/Navigation/UserHeader'
 import {useForm} from 'react-hook-form'
 import { supabase } from "../../supabase"
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import Header from '../../components/Header'
 
     // TODO
     // District option add
@@ -31,7 +31,7 @@ export default function Register() {
                 pin: data.pin
             }
         })
-        data.id = user.id
+        data.id = user?.id
         delete data.password
         if(!error){
             const res = await supabase
@@ -48,7 +48,7 @@ export default function Register() {
 
   return (
     <div className='relative flex flex-col justify-center items-center'>
-        <UserHeader/>
+        <Header/>
         <div className="shadow-md rounded-2xl px-4 mt-24 space-y-4" 
             style={{backgroundImage : `url(https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg?w=2000)`}}>
             <h1 className="text-black pt-4" style={{textAlign: 'center'}}>Sign Up</h1>
@@ -61,6 +61,7 @@ export default function Register() {
                         <label htmlFor="name">Name</label>
                         <input type="text"  className="input-text" placeholder="Name"
                         {...register("name", {required: "This field is required"})}/>
+                        {errors?.name && <p className='text-red-600'> {errors?.name.message} </p>}
                     </div>
 
                     <div className="input-text-group">
@@ -78,23 +79,26 @@ export default function Register() {
                         <label htmlFor="dob">Date of Birth</label>
                         <input type="date" className="input-text"placeholder="DOB"
                         {...register("dob", {required: "This field is required"})}/>
+                        {errors?.dob && <p className='text-red-600'> {errors?.dob.message} </p>}
                     </div>
 
                     <div className="input-text-group">
                         <label htmlFor="email">Email</label>
                         <input type="text" className="input-text" placeholder="abcd@gmail.com"
                         {...register("email", {required: "This field is required"})}/>
+                        {errors?.email && <p className='text-red-600'> {errors?.email.message} </p>}
                     </div>
 
                     <div className="input-text-group">
                         <label htmlFor="mobile">Phone Number</label>
                         <input type="text" className="input-text" placeholder="Mobile number"
                         {...register("mobile", {required: "This field is required"})}/>
+                        {errors?.mobile && <p className='text-red-600'> {errors?.mobile.message} </p>}
                     </div>
 
                     <div className="input-text-group">
                         <label htmlFor="password">Password</label>
-                        <input type="text" className="input-text" placeholder="Password"
+                        <input type="password" className="input-text" placeholder="Password"
                         {...register("password", {
                             required: "This field is required",
                         })}/>
@@ -113,6 +117,7 @@ export default function Register() {
                         <label htmlFor="city" >City</label>
                         <input type="text" className="input-text" placeholder='City'
                         {...register("city", {required: "This field is required"})}/>
+                        {errors?.city && <p className='text-red-600'> {errors?.city.message} </p>}
                     </div>
 
                     <div className="input-text-group">
@@ -120,7 +125,7 @@ export default function Register() {
                         <select className="input-text"
                         {...register("district", {required: "This field is required"})}>
                             <option selected>Choose...</option>
-                            <option>Kasargode</option>
+                            <option>Wayanad</option>
                         </select>
                     </div>
 

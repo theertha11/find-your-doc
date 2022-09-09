@@ -22,7 +22,7 @@ export default function Login() {
       password: data.password,
     })
     setloading(false) 
-    !error && router.push('/user/dashboard')
+    !error && router.push('/doctor/dashboard')
   }
 
   return (
@@ -49,14 +49,16 @@ export default function Login() {
                   {loading ? "Loading..." : "Login"}
                 </button>
               </div>
+
+              {errors?.password && <p className='text-red-600'> {errors?.password.message} </p>}
               
               <div className='flex flex-col items-center justify-center'>
-                <Link href='/user/password'>
+                <Link href='/password'>
                       <p className='cursor-pointer underline text-black'>Forgot Password</p>
                 </Link>
-                <Link href='/doctor/login'>
+                {/* <Link href='/doctor/login'>
                       <p className='cursor-pointer underline'>Doctor Login</p>
-                </Link>
+                </Link> */}
               </div>
             </form>
       </div>
