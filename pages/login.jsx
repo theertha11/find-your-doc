@@ -27,10 +27,10 @@ export default function Login() {
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen">
-          <div className="shadow-md w-90 rounded-2xl px-4 py-2"
+    <div className="relative flex flex-col items-center justify-center min-h-screen" >
+          <div className="shadow-md w-96 flex flex-col justify-center items-center rounded-2xl px-4 py-6"
             style={{backgroundImage : `url(https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg?w=2000)`}}>
-            <h1 className="pt-4 text-black text-center"  id="login">Login</h1>
+            <h3 className="pt-4 text-3xl font-bold text-black text-center pb-4" >Login</h3>
 
             {/* login form */}
             <form className="flex flex-col space-y-4" onSubmit ={handleSubmit(onSubmit)}>
@@ -57,16 +57,18 @@ export default function Login() {
               
               <div className='flex flex-col items-center justify-center space-y-2'>
                 <p>Don't have an account yet?</p>
-                <Link href='/user/register'>
-                  <button type="submit" className="submit w-full">
-                    User Registration
-                  </button>
-                </Link>
-                <Link href='/doctor/register'>
-                  <button type="submit" className="submit w-full">
-                    Doctor Registration
-                  </button>
-                </Link>
+                <div className='flex flex-col items-center justify-center space-y-4 w-full'>
+                  <Link href='/user/register'>
+                    <button type="submit" className="submit w-full">
+                      User Registration
+                    </button>
+                  </Link>
+                  <Link href='/doctor/register'>
+                    <button type="submit" className="submit w-full">
+                      Doctor Registration
+                    </button>
+                  </Link>
+                  </div>
               </div>
             </form>
       </div>

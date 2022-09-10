@@ -2,6 +2,19 @@ import { supabase } from "../supabase"
 import dayjs from "dayjs"
 
 
+// -----------------------------------------------------------------------Profile -------------------------------------------------------------------------------------
+export const updateDoctorProfile = async ({data, setloading, doctorId, setdoctorData}) => {
+    setloading(true)
+    const doctor = await supabase.from('doctor').update(data).match({id: doctorId})
+    if(!doctor?.error) { 
+        const { user, error } = await supabase.auth.update({
+            data: data,
+          })
+        !error && setdoctorData(doctor?.data[0])
+    }
+    setloading(false)
+}
+
 
 // ------------------------------------------------------------------ Doctor -----------------------------------------------------------------------------------------
 export const getDoctor = async ({setdoctorData, id}) => {
@@ -35,14 +48,15 @@ export const addSections = async ({data, setsections, setloading}) => {
             })
             slot = dayjs(slot).add((15), 'm')
         }
-        const slots = await supabase.from('appoinments').insert(a)
+        // adding slots to appoinment table
+        await supabase.from('appoinments').insert(a)
     }
     setloading(false)
 }
 
 
 export const getSlots = async ({setavailableSlots, id}) => {
-    const slots = await supabase.from('sections').select().match({doctor: id}).gt('date', dayjs().format('YYYY-MM-DD')).order('date', { ascending: true })
+    const slots = await supabase.from('sections').select().match({doctor: id}).gte('date', dayjs().format('YYYY-MM-DD')).order('date', { ascending: true })
     if(!slots?.error){
         const data = [...new Set(slots?.data?.map((item)=>(item?.date)))]
         setavailableSlots(data?.map((item)=>({value: item, alias: dayjs(item).format('ddd, DD MMM')})))
@@ -87,5 +101,60 @@ export const getAppoinments = async ({setappoinments, id, booked}) => {
     }
 }
 
+export const getAppoinmentBydate = async ({setappoinments, date, doctorId, setloading}) => {
+    setloading(true)
+    const sections = await supabase.from('sections').select().match({date: date, doctor: doctorId})
+    if(!sections?.error){
+        let a =[]
+        for (let i = 0; i < sections?.data?.length; i++) {
+            const sectionId = sections?.data[i]?.id
+            const appoinments = await supabase.from('appoinments').select().match({section: sectionId}).order('time', { ascending: true })
+            if(!appoinments?.error){
+                a.push(appoinments?.data)
+            }
+        }
+        setappoinments(a)
+    }
+    setloading(false)
+}
+export const getAppoinmentById = async ({setappoinment, id}) => {
+    const appoinment = await supabase.from('appoinments').select(`*,section(*)`).match({id: id})
+    if(!appoinment?.error){
+        setappoinment(appoinment?.data[0])
+    }
+}
 
-//.format('YYYY-MM-DD')
+export const getAppoinmentByUserId = async ({setappoinments, userId}) => {
+    const appoinments = await supabase.from('appoinments').select(`*,section(*, doctor(*))`).match({booked_by: userId})
+    console.log(appoinments);
+    if(!appoinments?.error){
+        setappoinments(appoinments?.data)
+    }
+}
+
+export const addAppoinment= async ({data, id, setloading, router}) => {
+    setloading(true)
+    const appoinment = await supabase.from('appoinments').update({ booked_by: data }).match({ id: id })
+    if(!appoinment?.error){
+        router.push('/user/bookings')
+    }
+    setloading(false)
+}
+
+
+
+// ----------------------------------------------------------------------- Feedbacks -----------------------------------------------
+export const addFeedback = async ({data, setloading, setfeedbacks}) => {
+    setloading(true)
+    const feedback = await supabase.from('feedback').insert([data])
+    if(!feedback?.error){
+        setfeedbacks((prev)=> [feedback?.data[0], ...prev])
+    }
+    setloading(false)
+}
+export const getFeedbacksByDoctor = async ({setfeedbacks, doctor}) => {
+    const feedbacks = await supabase.from('feedback').select(`*, user(*)`).match({doctor: doctor})
+    if(!feedbacks?.error){
+        setfeedbacks(feedbacks?.data)
+    }
+}

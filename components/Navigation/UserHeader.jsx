@@ -17,10 +17,10 @@ export default function UserHeader() {
                 <h2>FIND YOUR DOC</h2>
             </div>
             <div className="flex space-x-10 text-white text-xl items-center"> 
-                <Link href='/user/dashboard'>
-                    <p className='cursor-pointer'>Dashboard</p>
+                <Link href='/user'>
+                    <p className='cursor-pointer'>Home</p>
                 </Link>
-                <Link href='/user/contact'>
+                <Link href='/user#contact'>
                     <p className='cursor-pointer'>Contact us</p>
                 </Link>
                 <Link href='/user/bookings'>

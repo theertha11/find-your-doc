@@ -16,7 +16,7 @@ export default function DoctorSearchBox() {
     }
 
     return (
-        <div className="shadow-md rounded-2xl px-4  space-y-4" 
+        <div className="shadow-md rounded-2xl px-4  space-y-4 mt-24" 
             style={{backgroundImage : `url(https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg?w=2000)`}}>
 
                 <h3 className="text-black pt-4 text-3xl font-bold text-center">Doctor Search</h3>
@@ -29,8 +29,9 @@ export default function DoctorSearchBox() {
                         <label htmlFor="district">District *</label>
                         <select className="input-text"
                         {...register("district", {required: "This field is required"})}>
-                            <option selected>Choose...</option>
                             <option>Wayanad</option>
+                            <option>Kannur</option>
+                            <option>Kozhikode</option>
                         </select>
                     </div>
                     <div className="input-text-group">

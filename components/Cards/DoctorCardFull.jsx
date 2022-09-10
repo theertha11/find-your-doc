@@ -5,7 +5,7 @@ export default function DoctorCardFull({data}) {
     const router = useRouter()
 
     return (
-        <div className=" text-slate-600 shadow-md rounded-2xl flex flex-col  py-4 px-6 bg-white w-8/12">
+        <div className="shadow-md rounded-2xl flex flex-col  py-4 px-6 bg-white w-8/12">
             
             <div className="flex   items-center  py-4">
                 <div className="bg-zinc-900 text-white rounded-full flex justify-center items-center w-32 h-32">

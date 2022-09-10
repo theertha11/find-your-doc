@@ -52,7 +52,7 @@ export default function Register() {
         <Header/>
         <div className="shadow-md rounded-2xl px-4 mt-24 space-y-4" 
             style={{backgroundImage : `url(https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg?w=2000)`}}>
-            <h1 className="text-black pt-4 text-xl text-center">User Registartion</h1>
+            <h1 className="text-black pt-4 text-3xl font-bold text-center">User Registartion</h1>
 
 
             <form className='flex flex-col justify-center items-center space-y-4 pb-4'

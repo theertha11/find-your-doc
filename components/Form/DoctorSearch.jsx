@@ -37,8 +37,9 @@ export default function DoctorSearch({ loading }) {
                         <label htmlFor="district">District *</label>
                         <select className="input-text"
                         {...register("district", {required: "This field is required"})}>
-                            <option selected>Choose...</option>
                             <option>Wayanad</option>
+                            <option>Kannur</option>
+                            <option>Kozhikode</option>
                         </select>
                     </div>
 
