@@ -14,26 +14,26 @@ export default function contactUser() {
                             <div className="col-md-12">
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
-                                        <label for="inputEmail4">Name</label>
+                                        <label htmlFor="inputEmail4">Name</label>
                                         <input type="text" className="form-control" id="inputName" placeholder="Name"/>
                                     </div>
                                     <div className="form-group col-md-6">
-                                        <label for="inputPassword4">Place</label>
+                                        <label htmlFor="inputPassword4">Place</label>
                                         <input type="text" className="form-control" id="inputPassword4" placeholder="Place"/>
                                     </div>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
-                                        <label for="inputEmail4">Email</label>
+                                        <label htmlFor="inputEmail4">Email</label>
                                         <input type="email" className="form-control" id="inputEmail4" placeholder="Email"/>
                                     </div>
                                     <div className="form-group col-md-6">
-                                        <label for="inputPassword4">Mobile</label>
+                                        <label htmlFor="inputPassword4">Mobile</label>
                                         <input type="tel" className="form-control" id="inputPassword4" placeholder="Mobile"/>
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <label for="inputAddress">Message</label>
+                                    <label htmlFor="inputAddress">Message</label>
                                     <textarea className="form-control" cols="30" rows="10" placeholder="Write your messages..."></textarea>
                                 </div>
                                 <div className="form-group text-center">
