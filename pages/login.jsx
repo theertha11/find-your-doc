@@ -56,7 +56,7 @@ export default function Login() {
               {errors?.password && <p className='text-red-600'> {errors?.password.message} </p>}
               
               <div className='flex flex-col items-center justify-center space-y-2'>
-                <p>Don't have an account yet?</p>
+                <p>{"Don't have an account yet?"}</p>
                 <div className='flex flex-col items-center justify-center space-y-4 w-full'>
                   <Link href='/user/register'>
                     <button type="submit" className="submit w-full">
