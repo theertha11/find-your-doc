@@ -24,7 +24,7 @@ export default function Bookings() {
             
             <div className='flex justify-center items-center space-x-10 px-12 pt-24 w-full'>
                 { appoinments?.map((item)=>
-                    <BookingCard doctorData={item?.section?.doctor} appoinmentData={item} />
+                    <BookingCard key={item?.section?.date} doctorData={item?.section?.doctor} appoinmentData={item} />
                 )}
             </div>
         
